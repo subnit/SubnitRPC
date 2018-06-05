@@ -9,12 +9,13 @@ import java.lang.reflect.Method;
 import java.net.Socket;
 
 /**
- * 描述:
+ * description:
  * date : create in 20:40 2018/6/4
  * modified by :
  *
  * @author subo
  */
+@Slf4j
 public class SocketHandler implements Runnable{
     private Socket socket;
     private ObjectOutputStream out = null;

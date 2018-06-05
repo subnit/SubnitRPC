@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 描述:
+ * description:
  * date : create in 20:35 2018/6/4
  * modified by :
  *
