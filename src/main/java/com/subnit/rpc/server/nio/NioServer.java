@@ -48,12 +48,6 @@ public class NioServer {
                     if (key.isReadable()) {
                         handleRead(key);
                     }
-                    if (key.isWritable() && key.isValid()) {
-
-                    }
-                    if (key.isConnectable()) {
-
-                    }
                     iter.remove();
                 }
 
@@ -89,7 +83,7 @@ public class NioServer {
         Class<?>[] parameterTypes = new Class[1];
         String[] strs = methodDTO.getParameterTypesString().replace("[","").replace("]","").split(",");
         try {
-            parameterTypes[0] = Class.forName("java.lang.String");
+            parameterTypes[0] = Class.forName(strs[0].replace("\"", ""));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -111,6 +105,7 @@ public class NioServer {
         String resStr = JSONObject.toJSONString(result);
         buf.clear();
         buf.put(resStr.getBytes());
+        buf.flip();
         while(buf.hasRemaining()) {
             sc.write(buf);
         }
