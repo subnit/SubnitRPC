@@ -2,7 +2,7 @@ package com.subnit.rpc.server.nio;
 
 import com.alibaba.fastjson.JSONObject;
 import com.subnit.rpc.server.simple.SimpleSocketServer;
-import com.subnit.rpc.util.MethodDTO;
+import com.subnit.rpc.util.MethodInfoStr;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -76,12 +76,12 @@ public class NioServer {
                 res.append((char)buf.get());
             }
 
-        MethodDTO methodDTO = JSONObject.parseObject(res.toString(), MethodDTO.class);
-        String className = methodDTO.getClassName();
-        String methodName = methodDTO.getMethodName();
-        Object[] arguments = (Object[]) JSONObject.parseObject(methodDTO.getArgsString(),Object[].class);
+        MethodInfoStr methodInfoStr = JSONObject.parseObject(res.toString(), MethodInfoStr.class);
+        String className = methodInfoStr.getClassName();
+        String methodName = methodInfoStr.getMethodName();
+        Object[] arguments = (Object[]) JSONObject.parseObject(methodInfoStr.getArgsString(),Object[].class);
         Class<?>[] parameterTypes = new Class[1];
-        String[] strs = methodDTO.getParameterTypesString().replace("[","").replace("]","").split(",");
+        String[] strs = methodInfoStr.getParameterTypesString().replace("[","").replace("]","").split(",");
         try {
             parameterTypes[0] = Class.forName(strs[0].replace("\"", ""));
         } catch (ClassNotFoundException e) {
