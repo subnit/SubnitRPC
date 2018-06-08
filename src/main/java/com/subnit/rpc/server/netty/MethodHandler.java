@@ -18,6 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MethodHandler extends ChannelInboundHandlerAdapter {
     public static ConcurrentHashMap<String, Object> classMap = new ConcurrentHashMap<String, Object>();
 
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         MethodInfo methodInfo = (MethodInfo) msg;
